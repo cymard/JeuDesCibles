@@ -1,0 +1,31 @@
+h1 {
+    font-size : 2em;
+}
+
+.window {
+    height : 800px;
+    width : 100%;
+}
+
+.target {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background: green;
+}
+
+#container {
+    margin: auto;
+    /* margin-top: 20px; */
+    width : 1111px;
+    padding: 0;
+}
+
+#play {
+    padding : 0;
+    width : 759px;
+}
+
+#score {
+    width : 350px;
+}
