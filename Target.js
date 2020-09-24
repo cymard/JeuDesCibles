@@ -87,10 +87,3 @@ class Target {
     }
       
 }
-
-const htmlBord = $('#play');
-const htmlTarget = $('#target');
-
-const target = new Target(htmlBord,htmlTarget);
-target.moveTarget();
-target.moveTheClickedTarget();
