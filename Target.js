@@ -75,14 +75,14 @@ class Target {
     /*Supprimer la cible quand on clique dessus */
     moveTheClickedTarget(){
 
-        this.target.click((event) => {
-            $(this).remove(); //pas remove mais juste la cacher
-            //sound effect
-            const audio = new Audio('sound/beep-41.mp3');
-            audio.play()
-            //reapparaitre
-            this.moveTarget();//bouger 
-        })
+        $(this).remove(); //pas remove mais juste la cacher
+        
+        //sound effect
+        const audio = new Audio('sound/beep-41.mp3');
+        audio.play()
+
+        //reapparaitre
+        this.moveTarget();//bouger 
 
     }
       
