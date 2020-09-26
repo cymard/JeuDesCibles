@@ -1,4 +1,4 @@
-class Target {
+class Target{
     bord;
     target;
 
@@ -84,6 +84,14 @@ class Target {
         //reapparaitre
         this.moveTarget();//bouger 
 
+    }
+
+    hideTarget(){
+        this.target.hide();
+    }
+
+    showTarget(){
+        this.target.show();
     }
       
 }

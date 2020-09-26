@@ -41,5 +41,30 @@ h1 {
 }
 
 #score div:nth-of-type(2){
-    background-color: blue;
+    background-color:gray;
+}
+
+#modal {
+    height : 200px;
+    width : 200px;
+    background-color : gray;
+    margin: auto;
+    display : none;
+    padding: 10px;
+}
+
+#modal div{
+    height : 80%;
+    padding : 50px 10px 10px 10px;
+    font-size : 2em;
+}
+
+#modal button{
+    height : 20%;
+    width : 100%;
+    border: none;
+}
+
+#timer {
+    font-size : 2em;
 }

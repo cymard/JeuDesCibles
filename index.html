@@ -9,23 +9,29 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     </head>
     <body>
-        <h1 class="text-center">Bienvenu</h1>
+        <h1 class="text-center">Bienvenue</h1>
 
         <div class="row border border-dark" id="container">
     
-            <div class="border window border-dark" id="score">
-                <div class="scoreChild">
+            <div class="border window border-dark " id="score">
+                <div class="scoreChild p-3">
                     <p>score : <span id="scoreNumber"></span></p>
-                    <p>timer : <span id="timerNumber"></span></p>
+                    <p id="timer">timer : <span id="timerNumber"></span></p>
                 </div>
 
-                <div class="scoreChild">
+                <div class="scoreChild p-3">
                     <h2>Options :</h2>
                 </div>
             </div>
 
             <div class="border window border-dark"  id="play">
                 <div class="target" id="target"></div>
+                <div id="modal" class="modal-content">
+                    <div>
+                        <p class="text-center">Score : <span id="modalScoreNumber"></span></p>
+                    </div>
+                    <button class="btn btn-success">restart</button>
+                </div>
             </div>
 
         </div>
@@ -38,10 +44,12 @@
     <!-- jquery -->
     <script type="text/javascript" src="jquery/jquery-3.5.1.js"></script>
     <!-- mes scripts js -->
+
     <script type="text/javascript" src="index.js"></script>
     <script type="text/javascript" src="Score.js"></script>
     <script type="text/javascript" src="Target.js"></script>
     <script type="text/javascript" src="Timer.js"></script>
+
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
