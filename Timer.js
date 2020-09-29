@@ -47,6 +47,7 @@ class Timer{
     } 
 
     restartTimer(){
+        
         this.secondes = this.initialSecondes;
     }
 

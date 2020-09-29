@@ -2,8 +2,14 @@ $(document).ready(function(){
     //instance target
     const htmlBord = $('#play');
     const htmlTarget = $('#target');
+
+    const boardWidth = htmlBord.css('width');
+    const targetWidth = htmlTarget.css('width');
+    const boardHeight = htmlBord.css('height');
+    const targetHeight = htmlTarget.css('height');
+    const spanTarget = $('#span-target');
     
-    const target = new Target(htmlBord,htmlTarget);
+    const target = new Target(htmlBord,htmlTarget,boardWidth,targetWidth,boardHeight,targetHeight,spanTarget);
     target.moveTarget();
 
     //instance score
@@ -13,13 +19,48 @@ $(document).ready(function(){
     const modalScoreNumber = $('#modalScoreNumber');
     const score = new Score(modal,parent,scoreNumber,modalScoreNumber);
 
-    const timer = new Timer(10);
+    const timer = new Timer(20);
 
+    // lorsque l'on clique sur la target
     htmlTarget.click(function(){
         target.moveTheClickedTarget()
         score.addOnePoint();
         score.displayScore();
         timer.startOnlyNewTimer(callFunctionContinueOrStopTimer);
+
+        if(score.getPoints() >= 5 && score.getPoints() < 7){
+
+            target.setIconColorRed();
+
+        }else if(score.getPoints() >= 7 && score.getPoints() < 15){
+            target.changeTargetIconLvl1();
+            target.setIconColorGreen();
+
+            if(score.getPoints() >= 12){
+                target.setIconColorRed();
+            }
+
+        }else if(score.getPoints() >= 15 && score.getPoints() < 22){
+            target.changeTargetIconLvl2();
+            target.setIconColorGreen();
+
+            if(score.getPoints() >= 19){
+                target.setIconColorRed();
+            }
+
+        }else if(score.getPoints() >= 22 && score.getPoints() < 30){
+            target.changeTargetIconLvl3();
+            target.setIconColorGreen();
+
+            if(score.getPoints() >= 27){
+                target.setIconColorRed();
+            }
+
+        }else if(score.getPoints() >= 30 ){
+            target.changeTargetIconLvl4();
+            target.setIconColorGreen();
+
+        }
     })
 
 
@@ -35,6 +76,10 @@ $(document).ready(function(){
 
             // affichage de la modal
             score.displayModal()
+
+            // remise sous la forme initial de la target
+            target.setIconColorGreen();
+            target.changeTargetIconLvl0();
         }
     
     }

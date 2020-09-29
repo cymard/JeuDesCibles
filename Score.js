@@ -1,7 +1,7 @@
 class Score{
-    modal = $('#modal');
-    parent = $('#play');
-    score = $("#scoreNumber");
+    modal;
+    parent;
+    score;
     points;
     modalScoreNumber;
 

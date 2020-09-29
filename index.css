@@ -2,11 +2,6 @@ h1 {
     font-size : 2em;
 }
 
-.window {
-    height : 800px;
-    width : 100%;
-}
-
 .target {
     width: 40px;
     height: 40px;
@@ -23,17 +18,23 @@ h1 {
 #container {
     margin: auto;
     /* margin-top: 20px; */
-    width : 1111px;
+    /* width : 1111px; */
+    min-height: 610px;
+    min-width: 610px;
+    width: 80%;
+    height: 90%;
     padding: 0;
 }
 
 #play {
     padding : 0;
-    width : 759px;
+    /* width : 759px; */
+    width : 70%;
 }
 
 #score {
-    width : 350px;
+    /* width : 350px; */
+    width: 30%;
 }
 
 #score div:first-of-type{
@@ -67,4 +68,8 @@ h1 {
 
 #timer {
     font-size : 2em;
+}
+
+#span-target{
+    color : green;
 }

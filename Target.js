@@ -1,11 +1,21 @@
 class Target{
-    bord;
+    board;
     target;
+    boardWidth;
+    targetWidth;
+    boardHeight;
+    targetHeight;
+    spanTarget;
+    spanActualClass;
 
-    constructor(bord,target){
+    constructor(board,target,boardWidth,targetWidth,boardHeight,targetHeight,spanTarget){
         this.setTarget(target);
-        this.setBord(bord);
-
+        this.setBoard(board);
+        this.boardWidth = boardWidth;
+        this.targetWidth = targetWidth;
+        this.boardHeight = boardHeight;
+        this.targetHeight = targetHeight;
+        this.spanTarget = spanTarget;
     }
 
     // getteurs
@@ -13,8 +23,12 @@ class Target{
         return this.target;
     }
 
-    getBord(){
-        return this.bord;
+    getBoard(){
+        return this.board;
+    }
+
+    getSpanActualClass(){
+        return this.spanActualClass;
     }
 
     // setteurs
@@ -22,20 +36,29 @@ class Target{
         this.target = target;
     }
 
-    setBord(bord){
-        this.bord = bord;
+    setBoard(board){
+        this.board = board;
     }
 
 
     // autres méthodes
 
-    /* Afficher une cible(div) aléatoire sur le bord */
+    /* Afficher une cible(div) aléatoire sur le board */
     moveTarget(){
 
-        //mise des valeurs des margin
-        this.putRandomMarginLeft(this.target);
-        this.putRandomMarginTop(this.target);
+        this.setActualValues();// mise à jour des valeurs height/width du margin de la target en fonction de la taille de la fenêtre
+
+        //mise en place des valeurs des margin
+        this.putRandomMarginLeft(this.boardWidth,this.targetWidth);
+        this.putRandomMarginTop(this.boardHeight,this.targetHeight);
     
+    }
+
+    setActualValues(){
+        this.boardWidth = $('#play').css('width');
+        this.targetWidth = $('#target').css('width');
+        this.boardHeight = $('#play').css('height');
+        this.targetHeight = $('#target').css('height');
     }
 
     /*mettre le margin-left et margin-top à 0 */
@@ -46,18 +69,49 @@ class Target{
         });
     }
 
-    /*Affecte une valeur(min-max) au margin-left d'une div*/
-    putRandomMarginLeft(){
+    transformPixelValueIntoNumber(value){
+        const theValue = value.split("p");
+        return theValue[0];
+    }
 
-        const randomNumber = this.getRandomInt(0, 717); // valeur max = 717px (pour ne pas sortir du bord)
+    calculateMaxTargetMarginWidth(boardWidth,targetWidth){
+
+        // probleme @param sont sous forme intpx donc pas de calculs
+        const numberBoardWidth = this.transformPixelValueIntoNumber(boardWidth);
+        const numberTargetWidth = this.transformPixelValueIntoNumber(targetWidth);
+
+        // suite
+        const maxTargetMarginWidth = (numberBoardWidth - numberTargetWidth);
+        console.log('maxWidth :' + maxTargetMarginWidth );
+        return maxTargetMarginWidth;
+    }
+
+    calculateMaxTargetMarginHeight(boardHeight,targetHeight){
+        // probleme @param sont sous forme intpx donc pas de calculs
+
+        const numberBoardHeight = this.transformPixelValueIntoNumber(boardHeight);
+        const numberTargetHeight = this.transformPixelValueIntoNumber(targetHeight)
+
+        // suite
+        const maxTargetMarginHeight = (numberBoardHeight- numberTargetHeight);
+        console.log('maxHeight :' + maxTargetMarginHeight );
+        return maxTargetMarginHeight;
+    }
+
+    /*Affecte une valeur(min-max) au margin-left d'une div*/
+    putRandomMarginLeft(boardWidth,targetWidth){
+        const maxTargetMarginWidth = this.calculateMaxTargetMarginWidth(boardWidth,targetWidth);
+
+        const randomNumber = this.getRandomInt(0, maxTargetMarginWidth); // valeur max = 717px (pour ne pas sortir du board)
 
         this.target.css('margin-left',randomNumber);
     }
 
     /*Affecte une valeur(min-max) au margin-top d'une div*/
-    putRandomMarginTop(){
+    putRandomMarginTop(boardHeight,targetHeight){
+        const maxTargetMarginHeight = this.calculateMaxTargetMarginHeight(boardHeight,targetHeight);
 
-        const randomNumber = this.getRandomInt(0, 758); // valeur max = 758px (pour ne pas sortir du bord)
+        const randomNumber = this.getRandomInt(0, maxTargetMarginHeight); // valeur max = 758px (pour ne pas sortir du board)
 
         this.target.css('margin-top',randomNumber);
     }
@@ -93,5 +147,52 @@ class Target{
     showTarget(){
         this.target.show();
     }
-      
+
+    
+    changeTargetIconLvl0(){
+        this.target.removeClass(this.spanActualClass);
+        this.target.addClass("fa-frown");
+        this.spanActualClass = "fa-frown";
+    }
+
+    changeTargetIconLvl1(){
+        this.target.removeClass('fa-frown');
+        this.target.addClass("fa-meh-rolling-eyes");
+        this.spanActualClass = "fa-meh-rolling-eyes";
+
+    }
+
+    changeTargetIconLvl2(){
+        this.target.removeClass('fa-meh-rolling-eyes');
+        this.target.addClass("fa-smile-beam");
+        this.spanActualClass = "fa-smile-beam";
+
+    }
+
+    changeTargetIconLvl3(){
+        this.target.removeClass('fa-smile-beam');
+        this.target.addClass("fa-laugh");
+        this.spanActualClass = "fa-laugh";
+
+    }
+
+    changeTargetIconLvl4(){
+        this.target.removeClass('fa-laugh');
+        this.target.addClass("fa-surprise");
+        this.spanActualClass = "fa-surprise";
+
+    }
+
+    setIconColorGreen(){
+        this.spanTarget.css('color','green');
+    }
+
+    setIconColorRed(){
+        this.spanTarget.css('color','red');
+    }
+
+    setIconColorYellow(){
+        this.spanTarget.css('color','yellow');
+    }
+    
 }
