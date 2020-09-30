@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    //instance target
+    // constances pour l'instance de target
     const htmlBord = $('#play');
     const htmlTarget = $('#target');
 
@@ -8,15 +8,17 @@ $(document).ready(function(){
     const boardHeight = htmlBord.css('height');
     const targetHeight = htmlTarget.css('height');
     const spanTarget = $('#span-target');
-    
+
     const target = new Target(htmlBord,htmlTarget,boardWidth,targetWidth,boardHeight,targetHeight,spanTarget);
+
     target.moveTarget();
 
-    //instance score
+    //constances pour l'instance de score
     const modal = $('#modal');
     const parent = $('#play');
     const scoreNumber = $("#scoreNumber");
     const modalScoreNumber = $('#modalScoreNumber');
+
     const score = new Score(modal,parent,scoreNumber,modalScoreNumber);
 
     const timer = new Timer(20);
@@ -62,6 +64,22 @@ $(document).ready(function(){
 
         }
     })
+
+    //constances pour l'instance de sound
+    const htmlSound1 = $("#son-1");
+    const htmlSound2 = $("#son-2");
+
+    // boutons dans les options pour le son
+    htmlSound1.click(function(){
+        sound1 = new Audio('sound/beep-41.mp3');
+        target.setSound(sound1);
+    })
+
+    htmlSound2.click(function(){
+        sound2 = new Audio('sound/beep-07.mp3');
+        target.setSound(sound2);
+    })
+
 
 
     // arreter ou continuer le minuteur 

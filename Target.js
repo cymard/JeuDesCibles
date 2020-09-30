@@ -7,8 +7,9 @@ class Target{
     targetHeight;
     spanTarget;
     spanActualClass;
+    sound;
 
-    constructor(board,target,boardWidth,targetWidth,boardHeight,targetHeight,spanTarget){
+    constructor(board,target,boardWidth,targetWidth,boardHeight,targetHeight,spanTarget, sound = new Audio('sound/beep-41.mp3')){
         this.setTarget(target);
         this.setBoard(board);
         this.boardWidth = boardWidth;
@@ -16,6 +17,7 @@ class Target{
         this.boardHeight = boardHeight;
         this.targetHeight = targetHeight;
         this.spanTarget = spanTarget;
+        this.sound = sound;
     }
 
     // getteurs
@@ -38,6 +40,10 @@ class Target{
 
     setBoard(board){
         this.board = board;
+    }
+
+    setSound(sound){
+        this.sound = sound
     }
 
 
@@ -130,10 +136,10 @@ class Target{
     moveTheClickedTarget(){
 
         $(this).remove(); //pas remove mais juste la cacher
-        
-        //sound effect
-        const audio = new Audio('sound/beep-41.mp3');
-        audio.play()
+
+        // const audio = new Audio('sound/beep-41.mp3');
+        this.sound.play();
+
 
         //reapparaitre
         this.moveTarget();//bouger 
